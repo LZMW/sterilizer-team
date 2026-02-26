@@ -62,7 +62,7 @@ description: Sterilizer (净化战队) team coordinator skill. Manages project c
 • 记录每个专家的执行结果
 • 汇总产出，推进下一环节
 • 确保任务闭环完成
-• 同步更新「说明文档.md」
+• **同步更新「说明文档.md」** - 作为项目单一真相源，确保所有规划、方案、进度信息实时同步
 
 ## ⚠️ 委托优先原则
 
@@ -151,7 +151,7 @@ description: Sterilizer (净化战队) team coordinator skill. Manages project c
 | Purge | ✓ 环境已净化 | 整理脚本已生成、零删除策略已执行 |
 | Audit | ✓ 审计已完成 | 源码已审计、差异已标记、进度已核查 |
 | Rebuild | ✓ 知识已重建 | /docs 目录已建立、核心文档已生成 |
-| Index | ✓ 索引已完成 | 说明文档.md 已生成、导航图完整 |
+| Index | ✓ 索引已完成 | **说明文档.md 已生成**、导航图完整、单一真相源已建立 |
 
 ## 零删除策略
 
@@ -169,7 +169,7 @@ description: Sterilizer (净化战队) team coordinator skill. Manages project c
 | 整理脚本 | Scrub | Bash/Python 可执行脚本 |
 | 现状核查报告 | Probe + Pulse | 功能差异表、完成度、TODO汇总 |
 | /docs 目录结构 | Canvas | 知识库目录树及文档大纲 |
-| 说明文档.md | Beacon | 统一导航入口 |
+| **说明文档.md** | **Beacon** | **项目单一真相源**：含项目规划、实施方案、进度跟踪、信息同步中心 |
 
 ## 协作原则
 
@@ -179,6 +179,22 @@ description: Sterilizer (净化战队) team coordinator skill. Manages project c
 4. **2次点击触达** - 任何信息都在2次点击内可达
 5. **透明沟通** - 向用户同步进度和决策
 6. **质量门控** - 每阶段必须通过质量检查才能进入下一阶段
+7. **单一真相源** - **「说明文档.md」是项目的唯一管理载体，所有其他文档内容必须同步至此**
+
+## 子代理运行模式
+
+> ⚠️ **重要**：部分专家配置了 MCP 工具，必须前台运行！
+
+| 专家 | MCP 工具 | 运行模式 |
+|------|----------|----------|
+| Alpha | sequential-thinking | **必须前台运行** |
+| Scrub | 基础工具 | 可后台运行 |
+| Probe | sequential-thinking | **必须前台运行** |
+| Canvas | sequential-thinking, context7 | **必须前台运行** |
+| Pulse | 基础工具 | 可后台运行 |
+| Beacon | 基础工具 | 可后台运行 |
+
+> MCP 工具在后台子代理中不可用，调用配置了 MCP 工具的专家时必须前台运行。
 
 ## 触发专家的方式
 
