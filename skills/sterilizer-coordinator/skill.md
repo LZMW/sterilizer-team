@@ -198,11 +198,19 @@ description: Sterilizer (净化战队) team coordinator skill. Manages project c
 
 **子代理配置中声明了 MCP 工具权限，但必须由协调器授权才能使用。**
 
+### 三级鼓励体系
+
+| 级别 | 标识 | 定义 | 措辞策略 |
+|------|------|------|----------|
+| **必要级** | 🔴 REQUIRED | 任务核心依赖，不用无法完成 | "必须使用"、"优先使用" |
+| **推荐级** | 🟡 RECOMMENDED | 能显著提升质量，建议主动使用 | "建议主动使用"、"推荐优先考虑" |
+| **可选级** | 🟢 OPTIONAL | 锦上添花，视情况使用 | "可使用"、"如有需要" |
+
 ### 授权流程
 
 **阶段一：事前预估与方案制定**
 ```
-用户任务 → 协调器分析 → 预估各阶段 MCP 需求 → 制定方案 → 征求用户决策
+用户任务 → 协调器分析 → 预估各阶段 MCP 需求并分级 → 制定方案 → 征求用户决策
 ```
 
 **阶段二：进程动态调整**
@@ -213,14 +221,76 @@ description: Sterilizer (净化战队) team coordinator skill. Manages project c
 ### 触发子代理时的授权格式
 
 ```markdown
-# 用户同意使用 MCP 时
-🔓 MCP 授权（用户已同意）：
-此次任务可使用以下 MCP 工具：
+# 🔴 必要级授权（强鼓励）
+🔓 MCP 授权（必要工具，用户已同意）：
+🔴 必要工具（请**优先使用**）：
 - mcp__xxx__tool1: [用途说明]
+💡 使用建议：遇到 [场景] 时请调用此工具。
+
+# 🟡 推荐级授权（中鼓励）
+🔓 MCP 授权（推荐工具，用户已同意）：
+🟡 推荐工具（**建议主动使用**）：
+- mcp__yyy__tool2: [用途说明]
+💡 使用建议：在 [场景] 时使用此工具。请主动考虑使用时机。
 
 # 用户拒绝或不需 MCP 时
 🔒 MCP 限制：
 此次任务不使用 MCP 工具，请使用基础工具完成。
+```
+
+## 📦 阶段间信息传递（流水线型团队必选）
+
+> ⚠️ Sterilizer 是流水线型团队，必须配置阶段间信息传递机制
+
+### 存储目录
+
+```
+{项目根目录}/.sterilizer/reports/
+```
+
+### 文件命名规范
+
+| 阶段 | 文件名 | 内容描述 |
+|------|--------|----------|
+| Scan | 01_scale_report.md | 项目规模评估报告 |
+| Purge | 02_cleanup_report.md | 环境净化报告 |
+| Audit | 03_audit_report.md | 审计核查报告 |
+| Rebuild | 04_rebuild_report.md | 知识重建报告 |
+| Index | 05_index_report.md | 索引构建报告 |
+
+### 触发子代理时的路径传递格式
+
+```markdown
+使用 sterilizer-[expert] 子代理执行任务：
+
+**报告路径**：
+- 前序报告：{项目路径}/.sterilizer/reports/xx_xxx.md（请先读取）
+- 当前报告：{项目路径}/.sterilizer/reports/xx_xxx.md（完成后保存）
+
+[任务描述...]
+```
+
+### 各阶段依赖关系
+
+| 阶段 | 子代理 | 读取（前序报告） | 保存（当前报告） |
+|------|--------|------------------|------------------|
+| Scan | Alpha | 无 | 01_scale_report.md |
+| Purge | Scrub | 01_scale_report.md | 02_cleanup_report.md |
+| Audit | Probe | 01_scale_report.md, 02_cleanup_report.md | 03_audit_report.md |
+| Audit | Pulse | 01_scale_report.md | -（进度追踪） |
+| Rebuild | Canvas | 01_scale_report.md, 03_audit_report.md | 04_rebuild_report.md |
+| Index | Beacon | 04_rebuild_report.md | 05_index_report.md |
+
+### 触发示例
+
+```markdown
+使用 sterilizer-scrub 子代理执行环境净化：
+
+**报告路径**：
+- 前序报告：N:/project/.sterilizer/reports/01_scale_report.md（请先读取）
+- 当前报告：N:/project/.sterilizer/reports/02_cleanup_report.md（完成后保存）
+
+请基于规模评估报告执行环境净化...
 ```
 
 ## 触发专家的方式
