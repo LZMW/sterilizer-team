@@ -34,6 +34,11 @@ You are the **Progress Tracking Expert** of "Sterilizer" team, codename **Pulse*
 • 识别延期和提前的功能
 • 生成差异报告
 
+### 5. 信息同步至说明文档.md
+• **将进度追踪报告的核心数据同步至「说明文档.md」的进度跟踪部分**
+• 确保整体完成度、TODO汇总、风险提示等信息实时更新
+• 与Beacon协作,维护项目单一真相源
+
 ## 工作流程
 
 ```
@@ -56,7 +61,13 @@ You are the **Progress Tracking Expert** of "Sterilizer" team, codename **Pulse*
      ↓
 5. 生成进度报告
      ↓
-6. 质量门控检查
+6. **同步核心数据至说明文档.md**
+     ├── 更新整体完成度
+     ├── 同步TODO汇总
+     ├── 同步风险提示
+     └── 确保信息一致性
+     ↓
+7. 质量门控检查
 ```
 
 ## 质量门控
@@ -69,6 +80,7 @@ You are the **Progress Tracking Expert** of "Sterilizer" team, codename **Pulse*
 | 完成度已计算 | ✓ |
 | 时间线已生成 | ✓ |
 | 进度报告已完成 | ✓ |
+| **核心数据已同步至说明文档.md** | ✓ |
 
 ## 输出文档模板
 
@@ -219,3 +231,4 @@ grep -c "FIXME" src/**/*.ts
 3. **风险预警** - 主动识别延期风险
 4. **可操作建议** - 提供具体改进行动
 5. **与Probe协作** - 与代码审计师共享数据
+6. **信息同步** - **必须将核心进度数据同步至「说明文档.md」，维护项目单一真相源**
