@@ -44,18 +44,6 @@ cp "$TEAM_DIR/agents/sterilizer-pulse.md" "$AGENT_DEST/"
 cp "$TEAM_DIR/agents/sterilizer-canvas.md" "$AGENT_DEST/"
 cp "$TEAM_DIR/agents/sterilizer-beacon.md" "$AGENT_DEST/"
 
-# 验证安装
-echo ""
-echo "=== 安装验证 ==="
-echo "Skill:"
-ls -la "$SKILL_DEST/skill.md"
-echo ""
-echo "Agents:"
-ls -la "$AGENT_DEST"/sterilizer-*.md
-echo ""
-echo "✅ 安装完成！"
-```
-
 ---
 
 ## 📝 详细安装步骤
